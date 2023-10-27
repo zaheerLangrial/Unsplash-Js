@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { searchCat } from '../Store/Slices/CatSlice'
@@ -6,7 +6,10 @@ import { searchCat } from '../Store/Slices/CatSlice'
 function Navbar() {
   const [input , setInput] = useState('')
   const dispatch = useDispatch()
-  dispatch(searchCat(input))
+  const inputRef = useRef('')
+  const filterCats = () => {
+    dispatch(searchCat(inputRef.current.value))
+  }
   return (
     <div className="p-3 max-w-7xl mx-auto md:flex justify-between items-center md:py-5">
       <h1 className="text-3xl text-yellow-500 font-bold sm:mb-3 md:py-0 sm:py-3">Unsplash</h1>
@@ -18,7 +21,7 @@ function Navbar() {
           </Link>
         <input
           className=" focus:outline-none bg-transparent border border-yellow-500 px-2 py-1 cursor-pointer placeholder:text-black text-black rounded-md"
-          placeholder="Search...." value={input} onChange={(e) => setInput(e.target.value)}
+          placeholder="Search...." ref={inputRef} onChange={filterCats}
         />
       </div>
     </div>

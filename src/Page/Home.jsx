@@ -30,7 +30,7 @@ const MudalForAddNewCat = (props) => {
         e.preventDefault();
         if(img) {
             const imgurl = URL.createObjectURL(img)
-            const tagsInArray = tags.split(' ')
+            const tagsInArray = tags
             dispatch(addCat({
                 id : cats.length,
                 url : imgurl,

@@ -25,11 +25,8 @@ export const catSlice = createSlice ({
             state.cats = state.cats.filter((cat) => cat.id !== action.payload)
         },
         searchCat (state , action){
-            state.cats = state.cats.filter((cat) => {
-                if(cat.tags) {
-                    cat.tags.filter((tag) => tag === action.payload)
-                }
-            })
+            console.log(action.payload)
+            state.cats = state.cats.filter((cat) => cat.id.toLowerCase().includes(action.payload))
         }    
     },
     extraReducers : (builder) => {
