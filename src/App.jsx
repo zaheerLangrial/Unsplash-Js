@@ -1,12 +1,19 @@
 import './App.css'
 import Home from './Page/Home'
+import { BrowserRouter , Route , Routes } from 'react-router-dom'
+import MyCollection from './Page/MyCollection'
+import PrevirewCat from './Page/PrevirewCat'
 
 function App() {
 
   return (
-    <>
-      <Home />
-    </>
+    <BrowserRouter>
+      <Routes>
+      <Route  path='/' element={<Home/>}/>
+      <Route  path='/mycollection' element={<MyCollection/>}/>
+      <Route  path='/preview/:id' element={<PrevirewCat/>}/>
+      </Routes>
+    </BrowserRouter>
   )
 }
 

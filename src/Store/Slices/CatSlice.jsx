@@ -17,6 +17,21 @@ export const catSlice = createSlice ({
         loading : false,
         error : null
     },
+    reducers : {
+        addCat (state , action) {
+            state.cats.push(action.payload)
+        }, 
+        deleteCat (state , action) {
+            state.cats = state.cats.filter((cat) => cat.id !== action.payload)
+        },
+        searchCat (state , action){
+            state.cats = state.cats.filter((cat) => {
+                if(cat.tags) {
+                    cat.tags.filter((tag) => tag === action.payload)
+                }
+            })
+        }    
+    },
     extraReducers : (builder) => {
         builder
         .addCase(catApiData.pending , (state) => {
@@ -32,5 +47,5 @@ export const catSlice = createSlice ({
         })
     }
 })
-
+export const {addCat , deleteCat , searchCat } = catSlice.actions
 export default catSlice.reducer
